@@ -32,18 +32,32 @@ int main(void)
             [asset setResaleValue:i * 17];
             
             NSUInteger randomIndex = rand() % [employees count];
-            // Employee* randomEmployee = [employees objectAtIndex:randomIndex];
-            Employee* randomEmployee = [employees objectAtIndex:i];
+            Employee* randomEmployee = [employees objectAtIndex:randomIndex];
+            // Employee* randomEmployee = [employees objectAtIndex:i];
             [randomEmployee addAssetsObject:asset];
             [allAssets addObject:asset];
         }
+
+        NSSortDescriptor* voa = [[NSSortDescriptor alloc]initWithKey:@"valueOfAssets" ascending:YES];
+        NSSortDescriptor* eid = [[NSSortDescriptor alloc]initWithKey:@"employeeID" ascending:YES];
+        [employees sortUsingDescriptors:[NSArray arrayWithObjects:voa, eid, nil]];
         NSLog(@"Employees: %@", employees);
         
         NSLog(@"Giving up ownership of one employee");
+        NSLog(@"%@", [[employees objectAtIndex:5] assets]);
         [employees removeObjectAtIndex:5];
+
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"holder.valueOfAssets > 70"];
+        NSArray* toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+        toBeReclaimed = nil;
+
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"Ahmed Riza" forKey:@"name"];
+        NSLog(@"%@", dict);
         
-        NSLog(@"Giving up ownership of array");
-        // allAssets = nil;
+        NSLog(@"Giving up ownership of arrays");
+        allAssets = nil;
         employees = nil;
     }
     

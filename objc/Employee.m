@@ -3,12 +3,12 @@
 
 @implementation Employee
 
-@synthesize employeeID;
+@synthesize employeeID, assets;
 
 - (void)addAssetsObject:(Asset *)a
 {
         if (!assets) {
-                assets = [[NSMutableArray alloc] init];
+                assets = [[NSMutableSet alloc] init];
         }
         [assets addObject:a];
         [a setHolder:self];
@@ -31,7 +31,8 @@
 
 - (NSString *)description
 {
-        return [NSString stringWithFormat:@"<Employee %d: $%d in assets>", [self employeeID], [self valueOfAssets]];
+        return [NSString stringWithFormat:@"<Employee %d : $%d in assets>", 
+               [self employeeID], [self valueOfAssets]];
 }
 
 - (void)dealloc

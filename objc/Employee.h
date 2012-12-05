@@ -5,9 +5,10 @@
 @interface Employee : Person
 {
         int employeeID;
-        NSMutableArray* assets;
+        NSMutableSet* assets;
 }
 @property int employeeID;
+@property NSMutableSet* assets;
 
 - (void)addAssetsObject:(Asset *)a;
 - (unsigned int)valueOfAssets;
