@@ -1,4 +1,6 @@
 .DS_Store
 *.o
 main
-xcuserdata
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
